@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pennings Plumbing & Heating Co. | Hudson Valley, NY</title>
+<meta name="description" content="Richard Pennings Plumbing & Heating Co. — Emergency plumbing and heating for the Hudson Valley. Available day and night. Call (845) 986-3910.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── TOKENS ──────────────────────────────────────────── */
+:root {
+  --bg:        #0A0C0F;
+  --surface:   #111417;
+  --gold:      #C9A84C;
+  --gold-dim:  #a8873a;
+  --white:     #F2EFE9;
+  --muted:     #7A7D82;
+  --danger:    #C0392B;
+  --danger-dk: #a03020;
+  --radius:    6px;
+  --transition: 0.3s ease;
+}
+
+/* ── RESET ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  border: none;
+}
+
+/* ── TYPOGRAPHY ──────────────────────────────────────── */
+.playfair { font-family: 'Playfair Display', serif; }
+.display  { font-size: clamp(48px, 7vw, 88px); font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+.section-head { font-size: clamp(32px, 4vw, 46px); font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.15; }
+.body-text { font-size: 17px; line-height: 1.7; color: var(--muted); }
+.small { font-size: 13px; }
+
+/* ── LAYOUT ──────────────────────────────────────────── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+section { padding: 100px 0; }
+
+/* ── NAV ─────────────────────────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 0;
+  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+}
+#nav.scrolled {
+  background: var(--bg);
+  padding: 14px 0;
+  box-shadow: 0 1px 0 rgba(201,168,76,0.1);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-variant: small-caps;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-phone {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.03em;
+  transition: color var(--transition);
+}
+.nav-phone:hover { color: var(--gold); }
+.btn-gold {
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s;
+  white-space: nowrap;
+  display: inline-block;
+}
+.btn-gold:hover { background: var(--gold-dim); transform: translateY(-1px); }
+.btn-ghost {
+  color: var(--white);
+  border: 1px solid rgba(242,239,233,0.3);
+  font-weight: 500;
+  font-size: 15px;
+  padding: 11px 26px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+  display: inline-block;
+  white-space: nowrap;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 22px; font-family: 'Playfair Display', serif; color: var(--white); transition: color var(--transition); }
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-menu .mobile-phone { color: var(--gold); font-size: 26px; font-weight: 600; letter-spacing: 0.03em; }
+
+/* ── HERO ────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(40,50,60,0.6) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    linear-gradient(165deg, #0f1419 0%, #0A0C0F 40%, #07090c 100%);
+  animation: kenburns 18s ease-in-out infinite alternate;
+}
+.hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 60px, rgba(255,255,255,0.008) 60px, rgba(255,255,255,0.008) 61px);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 100% 50% at 50% 100%, rgba(201,168,76,0.04) 0%, transparent 70%);
+}
+@keyframes kenburns {
+  0%   { transform: scale(1) translateX(0); filter: brightness(0.85); }
+  100% { transform: scale(1.06) translateX(-2%); filter: brightness(1); }
+}
+
+.hero-content {
+  position: relative; z-index: 1;
+  padding: 140px 0 80px;
+  max-width: 820px;
+}
+.hero-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.2s forwards;
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(46px, 6.5vw, 84px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+.hero-headline .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.hero-headline .word.visible {
+  animation: wordIn 0.5s ease forwards;
+}
+@keyframes wordIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-sub {
+  font-size: 20px;
+  color: rgba(242,239,233,0.65);
+  margin-bottom: 42px;
+  max-width: 540px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 1.8s forwards;
+}
+.hero-ctas {
+  display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 2s forwards;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s, box-shadow var(--transition);
+  display: inline-block;
+  letter-spacing: 0.02em;
+}
+.btn-primary:hover {
+  background: var(--gold-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(201,168,76,0.25);
+}
+.hero-trust {
+  display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 2.2s forwards;
+}
+.trust-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; }
+.trust-quote {
+  font-size: 13px;
+  color: var(--muted);
+  position: relative;
+  padding-left: 16px;
+}
+.trust-quote::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 14px; background: rgba(122,125,130,0.4);
+}
+.trust-quote:first-of-type::before { display: none; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── URGENCY STRIP ───────────────────────────────────── */
+#urgency {
+  background: var(--danger);
+  padding: 20px 0;
+  text-align: center;
+}
+.urgency-text {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.urgency-text a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── WHY PENNINGS ─────────────────────────────────────── */
+#why {
+  background: var(--bg);
+}
+.why-header { text-align: center; margin-bottom: 64px; }
+.why-header .section-head { color: var(--white); margin-bottom: 16px; }
+.why-header p { font-size: 18px; color: var(--muted); max-width: 520px; margin: 0 auto; }
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.pillar-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 40px 36px;
+  transition: border-color var(--transition), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.pillar-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-4px); }
+.pillar-card:hover::before { opacity: 1; }
+.pillar-icon { margin-bottom: 24px; }
+.pillar-icon svg { width: 40px; height: 40px; stroke: var(--gold); fill: none; }
+.pillar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.pillar-body { font-size: 16px; color: var(--muted); line-height: 1.7; }
+
+/* ── SERVICES ─────────────────────────────────────────── */
+#services { background: var(--surface); }
+.services-header { text-align: center; margin-bottom: 64px; }
+.services-header .section-head { color: var(--white); margin-bottom: 14px; }
+.services-header p { font-size: 18px; color: var(--muted); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.service-tile {
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-top: 2px solid transparent;
+  border-radius: 8px;
+  padding: 28px 24px;
+  cursor: default;
+  transition: border-top-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.service-tile:hover {
+  border-top-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+.service-icon { margin-bottom: 16px; }
+.service-icon svg { width: 30px; height: 30px; stroke: var(--gold); fill: none; }
+.service-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.service-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── REVIEWS ──────────────────────────────────────────── */
+#reviews { background: var(--bg); }
+.reviews-header { text-align: center; margin-bottom: 64px; }
+.reviews-header .section-head { color: var(--white); margin-bottom: 14px; }
+.reviews-header p { color: var(--muted); font-size: 17px; }
+.reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.review-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 48px 44px;
+  position: relative;
+  transition: border-color var(--transition);
+}
+.review-card:hover { border-color: rgba(201,168,76,0.15); }
+.review-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 96px;
+  line-height: 0.7;
+  color: var(--gold);
+  opacity: 0.2;
+  position: absolute;
+  top: 36px; left: 36px;
+  select: none;
+  pointer-events: none;
+}
+.review-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.65;
+  margin-bottom: 32px;
+  position: relative; z-index: 1;
+}
+.review-author { display: flex; align-items: center; gap: 12px; }
+.review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+.review-attribution {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── EMERGENCY CTA ────────────────────────────────────── */
+#emergency {
+  background: var(--danger);
+  text-align: center;
+  padding: 110px 0;
+  position: relative;
+  overflow: hidden;
+}
+#emergency::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,0,0,0.2), transparent);
+}
+.emergency-content { position: relative; z-index: 1; }
+.emergency-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.emergency-sub {
+  font-size: 20px;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 48px;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+.btn-emergency {
+  display: inline-block;
+  background: #fff;
+  color: var(--danger);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 20px 48px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-transform: uppercase;
+  animation: pulse 2s ease-in-out infinite;
+  transition: transform 0.15s, box-shadow var(--transition);
+}
+.btn-emergency:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+  50%       { box-shadow: 0 0 0 16px rgba(255,255,255,0); }
+}
+.emergency-fine {
+  margin-top: 24px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.05em;
+}
+
+/* ── CONTACT ──────────────────────────────────────────── */
+#contact { background: var(--surface); }
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-left { }
+.contact-left .section-head { color: var(--white); margin-bottom: 20px; }
+.contact-left p { font-size: 17px; color: var(--muted); margin-bottom: 36px; }
+.contact-detail {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-bottom: 22px;
+}
+.contact-detail svg { width: 20px; height: 20px; stroke: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.contact-detail-text { font-size: 15px; color: var(--muted); }
+.contact-detail-text strong { color: var(--white); display: block; font-size: 16px; margin-bottom: 2px; }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.form-input {
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  color: var(--white);
+  font-size: 15px;
+  padding: 13px 16px;
+  transition: border-color var(--transition);
+  width: 100%;
+}
+.form-input:focus { border-color: var(--gold); }
+.form-input::placeholder { color: rgba(122,125,130,0.5); }
+select.form-input { appearance: none; cursor: pointer; }
+textarea.form-input { resize: vertical; min-height: 110px; }
+.btn-submit {
+  background: var(--gold);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  padding: 16px 24px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s;
+  text-align: center;
+  text-transform: uppercase;
+}
+.btn-submit:hover { background: var(--gold-dim); transform: translateY(-1px); }
+.form-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 4px; }
+
+/* ── FOOTER ───────────────────────────────────────────── */
+footer {
+  background: #07090c;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 56px 0 0;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 48px;
+}
+.footer-brand .nav-logo { font-size: 20px; margin-bottom: 14px; display: block; }
+.footer-brand p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 260px; }
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 15px; color: rgba(242,239,233,0.6); transition: color var(--transition); }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-phone { font-size: 18px; font-weight: 600; color: var(--white); margin-bottom: 10px; display: block; transition: color var(--transition); }
+.footer-phone:hover { color: var(--gold); }
+.footer-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-legal { font-size: 13px; color: rgba(122,125,130,0.5); }
+
+/* ── DIVIDER LINE ────────────────────────────────────── */
+.gold-line {
+  width: 48px; height: 2px;
+  background: var(--gold);
+  margin: 0 auto 32px;
+}
+.gold-line-left { margin: 0 0 32px; }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  section { padding: 72px 0; }
+
+  .nav-right .btn-gold { display: none; }
+  .nav-phone { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-content { padding-top: 120px; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-ghost { width: 100%; text-align: center; }
+
+  .pillars-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid { grid-template-columns: 1fr; }
+
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  .footer-top { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .urgency-text { font-size: 13px; }
+  .review-card { padding: 36px 28px; }
+}
+
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ MOBILE MENU ══════════════════════════════════════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#why" onclick="closeMobile()">Why Pennings</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="tel:+18459863910" class="mobile-phone">(845) 986-3910</a>
+  <a href="#contact" class="btn-gold" onclick="closeMobile()">Book Service</a>
+</div>
+
+<!-- ══ NAV ═══════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Pennings</a>
+      <div class="nav-right">
+        <a href="tel:+18459863910" class="nav-phone">(845) 986-3910</a>
+        <a href="#contact" class="btn-gold">Book Service</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ═══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hudson Valley's Trusted Trade</p>
+      <h1 class="hero-headline" id="heroHeadline" aria-label="When It's Urgent, We're Already On Our Way.">
+        <!-- words injected by JS -->
+      </h1>
+      <p class="hero-sub">Plumbing &amp; Heating for the Hudson Valley — Available Now, Day or Night.</p>
+      <div class="hero-ctas">
+        <a href="tel:+18459863910" class="btn-primary">Call Now — We Answer Fast</a>
+        <a href="#contact" class="btn-ghost">Get a Free Estimate</a>
+      </div>
+      <div class="hero-trust">
+        <span class="trust-stars">★★★★★</span>
+        <span class="trust-quote">"Responded in seconds."</span>
+        <span class="trust-quote">"At her house in minutes."</span>
+        <span class="trust-quote">"Completely fixed. Very pleased."</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ URGENCY STRIP ══════════════════════════════════════ -->
+<div id="urgency">
+  <div class="container">
+    <p class="urgency-text">
+      🔧 BURST PIPE? DEAD FURNACE? WE MOVE FAST.&nbsp;
+      CALL NOW: <a href="tel:+18459863910">(845) 986-3910</a>
+    </p>
+  </div>
+</div>
+
+<!-- ══ WHY PENNINGS ═══════════════════════════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="why-header">
+      <div class="gold-line"></div>
+      <h2 class="section-head">The Pennings Difference</h2>
+      <p>Not a call center. Not a franchise. A craftsman who answers.</p>
+    </div>
+    <div class="pillars-grid">
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 5a2 2 0 0 1 2-2h3l2 4.5-2.5 1.5A11 11 0 0 0 13 14l1.5-2.5L19 14v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5Z"/>
+            <path d="M21 3l-4 4M17 3l4 4"/>
+          </svg>
+        </div>
+        <h3 class="pillar-title">We Answer</h3>
+        <p class="pillar-body">Most contractors go silent when you need them most. We responded to a Facebook message at 7am on a Monday — and were on-site in minutes.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 class="pillar-title">We Fix It Right</h3>
+        <p class="pillar-body">No guesswork. No return visits. From a gushing kitchen leak to a dead furnace on a cold winter morning — we diagnose fast and fix it properly.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+            <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+          </svg>
+        </div>
+        <h3 class="pillar-title">We're Family</h3>
+        <p class="pillar-body">Ricky Pennings is the one who shows up. Not a dispatch. Not a sub. You get the owner, every time — and that changes everything.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ═══════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="gold-line"></div>
+      <h2 class="section-head">Everything Your Home Needs</h2>
+      <p>Plumbing. Heating. Emergency Response. Done Right.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <div class="service-title">Emergency Plumbing</div>
+        <div class="service-desc">Day or night, burst pipes and flooding can't wait. We move immediately.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            <path d="M11 8v6M8 11h6"/>
+          </svg>
+        </div>
+        <div class="service-title">Leak Detection &amp; Repair</div>
+        <div class="service-desc">Precise diagnosis, minimal disruption, lasting repairs — the first time.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5-2 1.6-3 3.5-3 5.5a7 7 0 0 0 7 7Z"/>
+          </svg>
+        </div>
+        <div class="service-title">Drain Cleaning</div>
+        <div class="service-desc">Slow drains, full clogs — cleared completely, not temporarily masked.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h3a2 2 0 0 1 2 2v.5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"/>
+            <path d="M7 7V4M17 7V4M5 20h14a2 2 0 0 0 2-2v-5H3v5a2 2 0 0 0 2 2Z"/>
+          </svg>
+        </div>
+        <div class="service-title">Water Heater Installation</div>
+        <div class="service-desc">Tank and tankless systems installed with precision and manufacturer compliance.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>
+          </svg>
+        </div>
+        <div class="service-title">Furnace Repair &amp; Replacement</div>
+        <div class="service-desc">No heat in winter is a crisis. We diagnose, repair, or replace with urgency.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
+          </svg>
+        </div>
+        <div class="service-title">Boiler Service</div>
+        <div class="service-desc">Annual maintenance, emergency repair, and full system evaluations for steam and hot water boilers.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+            <path d="M7 8h10M7 12h4"/>
+          </svg>
+        </div>
+        <div class="service-title">New Construction Plumbing</div>
+        <div class="service-desc">Rough-in to finish, on schedule — partnerships with builders and homeowners alike.</div>
+      </div>
+
+      <div class="service-tile">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v6M12 22v-6M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M2 12h6M22 12h-6M4.93 19.07l4.24-4.24M14.83 9.17l4.24-4.24"/>
+          </svg>
+        </div>
+        <div class="service-title">Heating System Maintenance</div>
+        <div class="service-desc">Preventive tune-ups that keep systems efficient all season and prevent costly failures.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ════════════════════════════════════════════ -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <div class="gold-line"></div>
+      <h2 class="section-head">Don't Take Our Word For It</h2>
+      <p>Real customers. Real emergencies. Real results.</p>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-mark">"</div>
+        <blockquote class="review-text">
+          We sent a Facebook message at 7:00am on a Monday because my mother woke up to a gushing water leak — Pennings responded in seconds and were at her house in minutes. We had called other companies and got no response.
+        </blockquote>
+        <div class="review-author">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-attribution">Google Review — Verified Customer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-mark">"</div>
+        <blockquote class="review-text">
+          When my furnace wouldn't respond on a cold winter morning, I called Pennings. They came within an hour and got it going until the replacement part arrived. I am very pleased with their work, their attitude, and above all their timely response.
+        </blockquote>
+        <div class="review-author">
+          <div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-attribution">Google Review — Verified Customer</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ EMERGENCY CTA ══════════════════════════════════════ -->
+<section id="emergency">
+  <div class="container">
+    <div class="emergency-content">
+      <h2 class="emergency-headline">Pipe Burst? No Heat?</h2>
+      <p class="emergency-sub">Don't wait. Don't Google. Call Pennings.</p>
+      <a href="tel:+18459863910" class="btn-emergency">CALL NOW — (845) 986-3910</a>
+      <p class="emergency-fine">Real person. Fast response. Every time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="gold-line-left gold-line"></div>
+        <h2 class="section-head">Get Your Free Estimate</h2>
+        <p>Tell us what's going on. We'll get back to you fast — and we always answer the phone first.</p>
+
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M3 5a2 2 0 0 1 2-2h3l2 4.5-2.5 1.5A11 11 0 0 0 13 14l1.5-2.5L19 14v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5Z"/>
+          </svg>
+          <div class="contact-detail-text">
+            <strong>Call or Text Anytime</strong>
+            <a href="tel:+18459863910" style="color:var(--gold)">(845) 986-3910</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <div class="contact-detail-text">
+            <strong>Our Location</strong>
+            56 Warwick Turnpike, Warwick, NY 10990
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+          <div class="contact-detail-text">
+            <strong>Availability</strong>
+            Emergency response available 24 hours a day
+          </div>
+        </div>
+
+        <div style="margin-top: 32px; padding: 20px 24px; background: var(--bg); border-radius: 8px; border-left: 2px solid var(--gold);">
+          <p style="font-size:14px; color:var(--muted); line-height:1.7;">
+            <span style="color:var(--white); font-weight:600;">Proudly Serving the Hudson Valley, NY</span><br>
+            Warwick · Monroe · Middletown · Goshen · Chester · Florida · Pine Island · Greenwood Lake and surrounding communities.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">Name</label>
+              <input class="form-input" type="text" id="fname" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fphone">Phone</label>
+              <input class="form-input" type="tel" id="fphone" name="phone" placeholder="(845) 000-0000" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="femail">Email</label>
+            <input class="form-input" type="email" id="femail" name="email" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fservice">Service Needed</label>
+            <select class="form-input" id="fservice" name="service">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Emergency Plumbing</option>
+              <option>Leak Detection &amp; Repair</option>
+              <option>Drain Cleaning</option>
+              <option>Water Heater Installation</option>
+              <option>Furnace Repair &amp; Replacement</option>
+              <option>Boiler Service</option>
+              <option>New Construction Plumbing</option>
+              <option>Heating System Maintenance</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fmessage">Tell Us What's Going On</label>
+            <textarea class="form-input" id="fmessage" name="message" placeholder="Describe the issue, your address, best time to reach you…"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Request — We'll Respond Fast</button>
+          <p class="form-note">Or call us directly: <a href="tel:+18459863910" style="color:var(--gold)">(845) 986-3910</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="nav-logo">Pennings</span>
+        <p>Richard Pennings Plumbing &amp; Heating Co.<br>The Hudson Valley's trusted trade — built on showing up, fixing it right, and treating every home like family.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#why">Why Pennings</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Free Estimate</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+18459863910" class="footer-phone">(845) 986-3910</a>
+        <p style="font-size:14px; color:var(--muted);">56 Warwick Turnpike<br>Warwick, NY 10990</p>
+        <div class="footer-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Licensed &amp; Insured
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Richard Pennings Plumbing &amp; Heating Co. All rights reserved.</p>
+      <p class="footer-legal">Warwick, NY · Hudson Valley · Emergency Service Available</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ JS ══════════════════════════════════════════════════ -->
+<script>
+/* ── Nav scroll behavior ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── Hero headline word-by-word animation ── */
+const headline = "When It's Urgent, We're Already On Our Way.";
+const headlineEl = document.getElementById('heroHeadline');
+const words = headline.split(' ');
+words.forEach((word, i) => {
+  const span = document.createElement('span');
+  span.className = 'word';
+  span.textContent = word;
+  span.style.marginRight = '0.28em';
+  span.style.animationDelay = (0.6 + i * 0.12) + 's';
+  headlineEl.appendChild(span);
+});
+requestAnimationFrame(() => {
+  setTimeout(() => {
+    document.querySelectorAll('.hero-headline .word').forEach(w => w.classList.add('visible'));
+  }, 100);
+});
+
+/* ── Hamburger / mobile menu ── */
+function toggleMobile() {
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  hb.classList.toggle('open');
+  mm.classList.toggle('open');
+  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobile() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── Smooth scroll for anchor links ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* ── Form submission (placeholder) ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = 'Request Sent — We\'ll Be in Touch!';
+  btn.style.background = '#2d6a4f';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
